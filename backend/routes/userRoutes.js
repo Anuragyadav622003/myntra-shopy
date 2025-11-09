@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import User from '../models/user.js';
-import Product from '../models/Product.js';
+import Product from '../models/productModel.js';
 import Order from '../models/order.js'
 import {protect} from '../middleware/auth.js';
 
