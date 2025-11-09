@@ -51,7 +51,7 @@ export default function Home() {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get('${BaseUrl}/api/products');
+      const response = await axios.get(`${BaseUrl}/api/products`);
       setProducts(response.data.products);
       setFilteredProducts(response.data.products);
     } catch (error) {
