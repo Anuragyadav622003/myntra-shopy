@@ -9,8 +9,7 @@ import { useAuth } from '@/context/AuthContext';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
-
-
+import BaseUrl from '@/lib/Base_URL';
 
 interface Product {
   _id: string;
@@ -64,7 +63,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
     setWishlistLoading(true);
     try {
-      await axios.post(`http://localhost:5000/api/users/wishlist/${product._id}`);
+      await axios.post(`${BaseUrl}/api/users/wishlist/${product._id}`);
       
       if (onWishlistToggle) {
         onWishlistToggle(product._id);

@@ -45,6 +45,7 @@ router.put('/profile',protect, async (req, res) => {
 // Add/remove from wishlist
 router.post('/wishlist/:productId',protect, async (req, res) => {
   try {
+  
     const user = await User.findById(req.user.id);
     const productId = req.params.productId;
 
@@ -52,7 +53,6 @@ router.post('/wishlist/:productId',protect, async (req, res) => {
       return res.status(404).json({ message: 'User not found' });
     }
 
-    // Check if product exists
     const product = await Product.findById(productId);
     if (!product) {
       return res.status(404).json({ message: 'Product not found' });
