@@ -10,7 +10,7 @@ import { useAuth } from '@/context/AuthContext';
 import axios from 'axios';
 import BaseUrl from '@/lib/Base_URL';
 
-
+console.log('BaseUrl:',BaseUrl)
 
 interface Product {
   _id: string;
