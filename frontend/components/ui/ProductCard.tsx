@@ -230,7 +230,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   // Grid View - Optimized for different screen sizes
   return (
     <div className="bg-white rounded-lg shadow-sm border overflow-hidden hover:shadow-md transition-shadow group h-full flex flex-col">
-      <Link href={`/product/${product._id}`}>
+      {/* <Link href={`/product/${product._id}`}> */}
         <div className="relative aspect-[3/4] overflow-hidden">
           <img
             src={product.images[0] || '/images/placeholder.jpg'}
@@ -260,7 +260,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
             )}
           </Button>
         </div>
-      </Link>
+      {/* </Link> */}
       
       <div className="p-3 flex-1 flex flex-col">
         <div className="flex justify-between items-start mb-2 gap-2">
