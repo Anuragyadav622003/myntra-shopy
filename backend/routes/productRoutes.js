@@ -3,10 +3,6 @@ import Product from "../models/product.js";
 import { protect } from "../middleware/auth.js";
 
 const router = express.Router();
-
-// @desc    Get all products with filtering, sorting, pagination
-// @route   GET /api/products
-// @access  Public
 router.get("/", async (req, res) => {
   try {
     const {
