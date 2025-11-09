@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/Button';
 import { Filter, Grid, List, Sparkles, Truck, Shield, RefreshCw, X } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import axios from 'axios';
+import BaseUrl from '@/lib/Base_URL';
 
 
 
@@ -50,7 +51,7 @@ export default function Home() {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/products');
+      const response = await axios.get('${BaseUrl}/api/products');
       setProducts(response.data.products);
       setFilteredProducts(response.data.products);
     } catch (error) {
@@ -62,7 +63,7 @@ export default function Home() {
 
   const fetchWishlist = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/users/wishlist');
+      const response = await axios.get(`${BaseUrl}/api/users/wishlist`);
       const wishlistIds = response.data.map((product: Product) => product._id);
       setWishlist(wishlistIds);
     } catch (error) {
@@ -113,7 +114,7 @@ export default function Home() {
     if (!user) return;
     
     try {
-      await axios.post(`http://localhost:5000/api/users/wishlist/${productId}`);
+      await axios.post(`${BaseUrl}/api/users/wishlist/${productId}`);
       setWishlist(prev => {
         if (prev.includes(productId)) {
           return prev.filter(id => id !== productId);

@@ -9,6 +9,7 @@ import { useCart } from '@/context/CartContext';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import Link from 'next/link';
+import BaseUrl from '@/lib/Base_URL';
 
 interface Product {
   _id: string;
@@ -43,7 +44,7 @@ export default function Wishlist() {
 
   const fetchWishlist = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/users/wishlist');
+      const response = await axios.get(`${BaseUrl}/api/users/wishlist`);
       setWishlist(response.data);
     } catch (error) {
       console.error('Error fetching wishlist:', error);
@@ -55,7 +56,7 @@ export default function Wishlist() {
 
   const removeFromWishlist = async (productId: string) => {
     try {
-      await axios.post(`http://localhost:5000/api/users/wishlist/${productId}`); // Fixed URL
+      await axios.post(`${BaseUrl}/api/users/wishlist/${productId}`); // Fixed URL
       setWishlist(wishlist.filter(item => item._id !== productId));
       toast.success('Removed from wishlist');
     } catch (error) {

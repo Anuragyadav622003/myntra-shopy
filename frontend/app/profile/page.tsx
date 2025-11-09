@@ -8,6 +8,7 @@ import { User, MapPin, ShoppingBag, Heart, LogOut } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import BaseUrl from '@/lib/Base_URL';
 
 interface Address {
   _id?: string;
@@ -73,8 +74,8 @@ export default function Profile() {
  const fetchUserData = async () => {
   try {
     const [profileRes, ordersRes] = await Promise.all([
-      axios.get('http://localhost:5000/api/users/profile'),
-      axios.get('http://localhost:5000/api/users/orders')
+      axios.get(`${BaseUrl}/api/users/profile`),
+      axios.get(`${BaseUrl}/api/users/orders`)
     ]);
     
     setAddresses(profileRes.data.addresses || []);
@@ -90,7 +91,7 @@ export default function Profile() {
 const handleProfileUpdate = async (e: React.FormEvent) => {
   e.preventDefault();
   try {
-    await axios.put('http://localhost:5000/api/users/profile', formData);
+    await axios.put(`${BaseUrl}/api/users/profile`, formData);
     toast.success('Profile updated successfully');
     setEditMode(false);
   } catch (error) {
@@ -102,7 +103,7 @@ const handleProfileUpdate = async (e: React.FormEvent) => {
  const handleAddAddress = async (e: React.FormEvent) => {
   e.preventDefault();
   try {
-    await axios.post('http://localhost:5000/api/users/addresses', newAddress);
+    await axios.post(`${BaseUrl}/api/users/addresses`, newAddress);
     toast.success('Address added successfully');
     setNewAddress({
       name: '',

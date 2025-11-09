@@ -2,8 +2,9 @@
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
+import BaseUrl from '@/lib/Base_URL';
 
-// Update User interface to include phone
+
 interface User {
   _id: string;
   name: string;
@@ -45,9 +46,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   }, []);
 
+
   const fetchUserProfile = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/auth/profile');
+      const response = await axios.get(`${BaseUrl}/api/auth/profile`);
       setUser(response.data);
     } catch (error) {
       localStorage.removeItem('token');
@@ -58,7 +60,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const login = async (email: string, password: string) => {
-    const response = await axios.post('http://localhost:5000/api/auth/login', {
+    const response = await axios.post(`${BaseUrl}/api/auth/login`, {
       email,
       password,
     });
@@ -70,7 +72,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const register = async (name: string, email: string, password: string) => {
-    const response = await axios.post('http://localhost:5000/api/auth/register', {
+    const response = await axios.post(`${BaseUrl}/api/auth/register`, {
       name,
       email,
       password,
